@@ -1,0 +1,51 @@
+name: test_stage3_KGMgt_SAX_LAX*_SAX*
+suffix: ~  # add suffix to saved images
+scale: 1
+model_type: RefRestorationModel # TODO cpu: CPURefRestorationModel, gpu: RefRestorationModel
+set_CUDA_VISIBLE_DEVICES: ~
+crop_border: ~  # crop border when evaluation. If None(~), crop the scale pixels
+gpu_ids: [3]
+
+datasets:
+  test_0:
+    name:  Heart5_mat
+    type: RefDataset
+    dataroot_in: ~
+    dataroot_ref: ~
+    dataroot_mask: ~
+    mask_fold: mask6
+    io_backend:
+      type: disk
+    bicubic_model: PIL
+    ann_file: ~
+  #   # use_ColorJitter: true
+
+val_func: BasicSRValidation
+save_img: true #false # 
+
+#### network structures
+network_g:
+  type: RestorationNet  
+  ngf: 16
+  n_blocks: 4
+  groups: 4
+  embed_dim: 16
+  depths: [4, 4]
+  num_heads: [4, 4]
+  window_size: 8
+  use_checkpoint: True
+network_map:
+  type: FlowSimCorrespondenceGenerationArch
+  patch_size: 3
+  stride: 1
+  vgg_layer_list: ['relu1_1', 'relu2_1', 'relu3_1']
+  vgg_type: 'vgg19'
+network_extractor:
+  type: ContrasExtractorSep
+
+#### path
+path:
+  pretrain_model_g: ~
+  pretrain_model_feature_extractor: experiments/pretrained_model/feature_extraction.pth
+  strict_load: false # true
+  root: experiments/test/
