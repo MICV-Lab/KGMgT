@@ -7,6 +7,7 @@ Requirements:
   * scipy
   * scikit-image
   * tqdm
+
 Our code has been tested with Python 3.8, Pytorch 1.8.0, torchvision 0.9.0, CUDA 11.1 on Ubuntu 18.04.
 ### To Run Our Code.
 * Train the model
