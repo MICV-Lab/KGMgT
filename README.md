@@ -1,5 +1,6 @@
 # KGMgT
 ### The code for KGMgT.
+<<<<<<< HEAD
 ### Environment and Dependencies
 Requirements:
   * Python 3.8
@@ -19,3 +20,5 @@ Our code has been tested with Python 3.8, Pytorch 1.8.0, torchvision 0.9.0, CUDA
   sh test.sh
   ```
 This code is built on [DATSR](https://github.com/caojiezhang/DATSR) and [SRFormer](https://github.com/ofsoundof/GRL-Image-Restoration).
+=======
+>>>>>>> 6f20964 (modify README file)
